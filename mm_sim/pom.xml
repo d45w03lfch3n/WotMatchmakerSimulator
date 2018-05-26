@@ -38,6 +38,7 @@
        <configuration>
         <mainClass>de.DrP3pp3r.wot.mm_sim.MatchmakerSimulation</mainClass>
         <arguments>
+        	<!--<argument>ea</argument>-->
         </arguments>
        </configuration>
       </execution>
