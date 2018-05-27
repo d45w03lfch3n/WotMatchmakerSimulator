@@ -1,5 +1,11 @@
 package de.DrP3pp3r.wot.mm_sim;
 
+import de.DrP3pp3r.wot.mm_sim.tanks.TankClass;
+import de.DrP3pp3r.wot.mm_sim.tanks.TankType;
+import de.DrP3pp3r.wot.mm_sim.tanks.TankTypeSelector;
+import de.DrP3pp3r.wot.mm_sim.tanks.TankUsage;
+import de.DrP3pp3r.wot.mm_sim.tanks.TankUse;
+
 public class MatchmakerSimulation 
 {
     public static void main( String[] args )

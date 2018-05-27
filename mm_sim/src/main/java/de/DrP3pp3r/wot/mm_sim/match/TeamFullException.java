@@ -1,4 +1,4 @@
-package de.DrP3pp3r.wot.mm_sim;
+package de.DrP3pp3r.wot.mm_sim.match;
 
 public class TeamFullException extends Exception
 {
