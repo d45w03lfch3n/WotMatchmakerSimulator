@@ -3,6 +3,7 @@ package de.DrP3pp3r.wot.mm_sim;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class TankTypeSelector 
 {
@@ -10,11 +11,19 @@ public class TankTypeSelector
 public TankTypeSelector()
 {
 	selectionInfos = new ArrayList<TankTypeSelectionInfo>();
+	rng = new Random();
 }
 
 public void addSelectionInfo(TankTypeSelectionInfo selectionInfo)
 {
 	selectionInfos.add(selectionInfo);
+}
+
+public TankType getRandomTankType()
+{
+	final double selectorValue = rng.nextDouble();
+	System.out.format("Selector value form RNG is '%.4f'.", selectorValue);
+	return getTankType(selectorValue);
 }
 
 public TankType getTankType(double value)
@@ -39,5 +48,6 @@ public void prepare()
 }
 
 private List<TankTypeSelectionInfo> selectionInfos;
+private Random rng;
 	
 }

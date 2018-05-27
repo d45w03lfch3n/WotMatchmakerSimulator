@@ -22,5 +22,11 @@ public class MatchmakerSimulation
         TankType selectedTankType = tankTypeSelector.getTankType(0.5);
         System.out.format("The selected tank type is '%s.\n", selectedTankType.getName());
         
+        for(int i = 0; i < 10; ++i)
+        {
+        	selectedTankType = tankTypeSelector.getRandomTankType();
+            System.out.format("The selected tank type is '%s.\n", selectedTankType.getName());	
+        }
+        
     }
 }
