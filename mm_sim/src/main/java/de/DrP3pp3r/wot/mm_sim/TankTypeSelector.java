@@ -32,6 +32,7 @@ public TankType getTankType(double value)
 	return i.getTankType();
 }
 
+// not needed
 public void prepare()
 {
 	Collections.sort(selectionInfos);
