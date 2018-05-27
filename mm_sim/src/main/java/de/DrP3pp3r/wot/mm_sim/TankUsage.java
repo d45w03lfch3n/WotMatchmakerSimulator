@@ -27,6 +27,9 @@ public TankTypeSelector buildTankTypeSelector()
 	{
 		final double ratio = (double)tankUse.getUseCount()/totalUses;
 		offset += ratio;
+		if(offset > 1.0) {
+			offset = 1.0;
+		}
 		selector.addSelectionInfo(new TankTypeSelectionInfo(tankUse.getTankType(), offset));		
 		System.out.format("Ratio of tank '%s' is '%.4f' and offset is '%.4f'.\n", tankUse.getTankType().getName(), ratio, offset);
 	}

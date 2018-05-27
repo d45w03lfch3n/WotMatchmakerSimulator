@@ -18,16 +18,8 @@ public class MatchmakerSimulation
         tankUsage.addTankUse(loeweUse);
         tankUsage.addTankUse(progetto46Use);
         
-        TankTypeSelector selector = new TankTypeSelector();
-        selector.addSelectionInfo(new TankTypeSelectionInfo(is3, 0.4));
-        selector.addSelectionInfo(new TankTypeSelectionInfo(loewe, 0.75));
-        selector.addSelectionInfo(new TankTypeSelectionInfo(progetto46, 1.0));
-        
-        TankType selectedTankType = selector.getTankType(0.5);
-        System.out.format("The selected tank type is '%s.\n", selectedTankType.getName());
-        
-        TankTypeSelector createdSelector = tankUsage.buildTankTypeSelector();
-        TankType anotherSelectedTank = createdSelector.getTankType(0.5);
+        TankTypeSelector tankTypeSelector = tankUsage.buildTankTypeSelector();
+        TankType selectedTankType = tankTypeSelector.getTankType(0.5);
         System.out.format("The selected tank type is '%s.\n", selectedTankType.getName());
         
     }
