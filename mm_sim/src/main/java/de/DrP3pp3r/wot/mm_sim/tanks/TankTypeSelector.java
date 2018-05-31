@@ -22,8 +22,11 @@ public void addSelectionInfo(TankTypeSelectionInfo selectionInfo)
 public TankType getRandomTankType()
 {
 	final double selectorValue = rng.nextDouble();
-	System.out.format("Selector value form RNG is '%.4f'.", selectorValue);
-	return getTankType(selectorValue);
+	//System.out.format("Selector value form RNG is '%.4f'.\n", selectorValue);
+	TankType selectedTankType = getTankType(selectorValue);
+	assert selectedTankType != null : "Selected tank type is 'null'!";
+	//System.out.format("Selected tank type is '%s'.\n", selectedTankType.getName());
+	return selectedTankType;
 }
 
 public TankType getTankType(double value)
@@ -45,6 +48,17 @@ public TankType getTankType(double value)
 public void prepare()
 {
 	Collections.sort(selectionInfos);
+}
+
+@Override
+public String toString()
+{
+	String result = "Tank selection infos:\n";
+	for(TankTypeSelectionInfo si : selectionInfos)
+	{
+		result += si.toString() + '\n';
+	}
+	return result;
 }
 
 private List<TankTypeSelectionInfo> selectionInfos;

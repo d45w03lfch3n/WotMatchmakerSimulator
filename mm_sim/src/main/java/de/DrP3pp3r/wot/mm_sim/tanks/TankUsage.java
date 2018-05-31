@@ -42,6 +42,16 @@ public TankTypeSelector buildTankTypeSelector()
 	return selector;
 }
 
+@Override
+public String toString()
+{
+	String result = "Tank uses:\n";
+	for(TankUse u : tankUses)
+	{
+		result += u.toString() + '\n';
+	}
+	return result;
+}
 	
 private List<TankUse> tankUses;
 

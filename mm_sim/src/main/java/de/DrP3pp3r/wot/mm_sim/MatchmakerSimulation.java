@@ -1,6 +1,8 @@
 package de.DrP3pp3r.wot.mm_sim;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -42,23 +44,34 @@ public class MatchmakerSimulation
         			return query.list(); 
         		});
         
-        for(TankUse u : tankUses)
-        {
-        	System.out.println(u.toString());
-        }
-        
         TankUsage tankUsage = new TankUsage();
         tankUsage.setTankUses(tankUses);
+        System.out.print(tankUsage.toString());
         
         TankTypeSelector tankTypeSelector = tankUsage.buildTankTypeSelector();
-        TankType selectedTankType = tankTypeSelector.getTankType(0.5);
-        System.out.format("The selected tank type is '%s.\n", selectedTankType.getName());
+        TankType selectedTankType = null;
+//        TankType selectedTankType = tankTypeSelector.getTankType(0.5);
+//        System.out.format("The selected tank type is '%s.\n", selectedTankType.getName());
         
-        for(int i = 0; i < 10; ++i)
+        System.out.format("Initializing counter map.\n");
+        Map<String, Integer> counterMap = new HashMap<String, Integer>();
+        for(TankType t : tankTypes)
+        {
+        	counterMap.put(t.getName(), 0);
+        }
+
+        System.out.format("Selecting tanks.\n");
+        Integer tankCount = 100000;
+        for(int i = 0; i < tankCount; ++i)
         {
         	selectedTankType = tankTypeSelector.getRandomTankType();
-            System.out.format("The selected tank type is '%s.\n", selectedTankType.getName());	
+        	counterMap.put(selectedTankType.getName(), counterMap.get(selectedTankType.getName()) + 1);
         }
         
+        System.out.format("Tank appearances:\n");
+        for(Map.Entry<String, Integer> count : counterMap.entrySet())
+        {
+        	System.out.format("Appearance of tank '%s' is %.4f%%.\n", count.getKey(), (double)count.getValue()/tankCount*100);
+        }
     }
 }

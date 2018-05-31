@@ -26,6 +26,12 @@ public double getTopValue()
 public int compareTo(TankTypeSelectionInfo rhs) {
   return Double.compare(topValue, rhs.topValue);
 }
+
+@Override
+public String toString()
+{
+	return String.format("Tank selection info: '%s' is '%d'.", tankType.getName(), topValue);
+}
 	
 private final TankType tankType;
 private final double topValue;
