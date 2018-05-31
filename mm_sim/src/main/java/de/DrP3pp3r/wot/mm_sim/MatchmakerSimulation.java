@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import de.DrP3pp3r.wot.mm_sim.database.Database;
-import de.DrP3pp3r.wot.mm_sim.tanks.TankClass;
 import de.DrP3pp3r.wot.mm_sim.tanks.TankType;
 import de.DrP3pp3r.wot.mm_sim.tanks.TankTypeSelector;
 import de.DrP3pp3r.wot.mm_sim.tanks.TankUsage;
@@ -25,6 +24,7 @@ public class MatchmakerSimulation
         		(Session s) ->
         		{ 
         			String hql = "from TankType";
+        			@SuppressWarnings("unchecked")
         			Query<TankType> query = s.createQuery(hql);
         			return query.list(); 
         		});
@@ -40,6 +40,7 @@ public class MatchmakerSimulation
         		(Session s) ->
         		{ 
         			String hql = "from TankUse";
+        			@SuppressWarnings("unchecked")
         			Query<TankUse> query = s.createQuery(hql);
         			return query.list(); 
         		});

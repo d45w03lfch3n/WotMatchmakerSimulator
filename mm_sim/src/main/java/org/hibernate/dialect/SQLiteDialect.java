@@ -180,9 +180,13 @@ public class SQLiteDialect extends Dialect {
 	private static final int SQLITE_BUSY = 5;
 	private static final int SQLITE_LOCKED = 6;
 	private static final int SQLITE_IOERR = 10;
+	@SuppressWarnings("unused")
 	private static final int SQLITE_CORRUPT = 11;
+	@SuppressWarnings("unused")
 	private static final int SQLITE_NOTFOUND = 12;
+	@SuppressWarnings("unused")
 	private static final int SQLITE_FULL = 13;
+	@SuppressWarnings("unused")
 	private static final int SQLITE_CANTOPEN = 14;
 	private static final int SQLITE_PROTOCOL = 15;
 	private static final int SQLITE_TOOBIG = 18;
