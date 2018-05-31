@@ -1,7 +1,5 @@
 package de.DrP3pp3r.wot.mm_sim.database;
 
-import java.util.function.Supplier;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,7 +29,7 @@ public class Database
         sessionFactory = metaData.getSessionFactoryBuilder().build();
     }
     
-    public <T> T execute(Supplier<T> query)
+    public <T> T execute(IQuery<T> query)
     {
     	Session session = null;
         Transaction transaction = null;
@@ -43,7 +41,7 @@ public class Database
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             
-            result = query.get();
+            result = query.execute(session);
              
             session.flush();
             transaction.commit();

@@ -73,6 +73,12 @@ public void setMaxBattleTier(Integer maxBattleTier) {
 	this.maxBattleTier = maxBattleTier;
 }
 
+@Override
+public String toString()
+{
+	return String.format("Tank type '%s', class '%s, tier '%d', min. battle tier '%d', max. battle tier '%d'", name, tankClass.toString(), tier, minBattleTier, maxBattleTier);
+}
+
 @Id
 private Integer id;
 private String name;

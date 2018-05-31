@@ -1,5 +1,10 @@
 package de.DrP3pp3r.wot.mm_sim;
 
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
 import de.DrP3pp3r.wot.mm_sim.database.Database;
 import de.DrP3pp3r.wot.mm_sim.tanks.TankClass;
 import de.DrP3pp3r.wot.mm_sim.tanks.TankType;
@@ -14,7 +19,20 @@ public class MatchmakerSimulation
         System.out.println( "MatchmakerSimulation was started!" );
         
         Database database = new Database();
+        List<TankType> tankTypes = database.execute(
+        		(Session s) ->
+        		{ 
+        			String hql = "from TankType";
+        			Query<TankType> query = s.createQuery(hql);
+        			return query.list(); 
+        		});
         
+        System.out.format("Number of tank types: '%d'.\n", tankTypes.size());
+        
+        for(TankType t : tankTypes)
+        {
+        	System.out.println(t.toString());
+        }
         
         TankType is3 = new TankType("IS-3", TankClass.HEAVY_TANK, 8, 8, 10);
         TankType loewe = new TankType("Löwe", TankClass.HEAVY_TANK, 8, 8, 10);
