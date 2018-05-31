@@ -34,18 +34,21 @@ public class MatchmakerSimulation
         	System.out.println(t.toString());
         }
         
-        TankType is3 = new TankType("IS-3", TankClass.HEAVY_TANK, 8, 8, 10);
-        TankType loewe = new TankType("Löwe", TankClass.HEAVY_TANK, 8, 8, 10);
-        TankType progetto46 = new TankType("Progetto 46", TankClass.MEDIUM_TANK, 8, 8, 10);
+        List<TankUse> tankUses = database.execute(
+        		(Session s) ->
+        		{ 
+        			String hql = "from TankUse";
+        			Query<TankUse> query = s.createQuery(hql);
+        			return query.list(); 
+        		});
         
-        TankUse is3Use = new TankUse(is3, 40);
-        TankUse loeweUse = new TankUse(loewe, 35);
-        TankUse progetto46Use = new TankUse(progetto46, 25);
+        for(TankUse u : tankUses)
+        {
+        	System.out.println(u.toString());
+        }
         
         TankUsage tankUsage = new TankUsage();
-        tankUsage.addTankUse(is3Use);
-        tankUsage.addTankUse(loeweUse);
-        tankUsage.addTankUse(progetto46Use);
+        tankUsage.setTankUses(tankUses);
         
         TankTypeSelector tankTypeSelector = tankUsage.buildTankTypeSelector();
         TankType selectedTankType = tankTypeSelector.getTankType(0.5);

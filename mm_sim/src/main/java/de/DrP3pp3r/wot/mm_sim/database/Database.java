@@ -11,6 +11,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import de.DrP3pp3r.wot.mm_sim.tanks.TankType;
+import de.DrP3pp3r.wot.mm_sim.tanks.TankUse;
 
 public class Database
 {
@@ -18,16 +19,6 @@ public class Database
 	{
 		configureSessionFactory();
 	}
-	
-    private static void configureSessionFactory() throws HibernateException
-    {        
-        StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-        MetadataSources sources = new MetadataSources(standardRegistry)
-        			.addAnnotatedClass(TankType.class);
-        MetadataBuilder metadataBuilder = sources.getMetadataBuilder();
-        Metadata metaData =  metadataBuilder.applyImplicitSchemaName( "MatchmakerSimulator" ).build();
-        sessionFactory = metaData.getSessionFactoryBuilder().build();
-    }
     
     public <T> T execute(IQuery<T> query)
     {
@@ -68,6 +59,17 @@ public class Database
         }
         
         return result;
+    }
+    
+    private static void configureSessionFactory() throws HibernateException
+    {        
+        StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        MetadataSources sources = new MetadataSources(standardRegistry)
+        			.addAnnotatedClass(TankType.class)
+        			.addAnnotatedClass(TankUse.class);
+        MetadataBuilder metadataBuilder = sources.getMetadataBuilder();
+        Metadata metaData =  metadataBuilder.applyImplicitSchemaName( "MatchmakerSimulator" ).build();
+        sessionFactory = metaData.getSessionFactoryBuilder().build();
     }
     
     private static SessionFactory sessionFactory = null;

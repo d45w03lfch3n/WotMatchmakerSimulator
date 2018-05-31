@@ -15,6 +15,11 @@ public void addTankUse(TankUse tankUse)
 	tankUses.add(tankUse);
 }
 
+public void setTankUses(List<TankUse> tankUses)
+{
+	this.tankUses = tankUses;
+}
+
 public TankTypeSelector buildTankTypeSelector()
 {
 	TankTypeSelector selector = new TankTypeSelector();
