@@ -1,5 +1,6 @@
 package de.DrP3pp3r.wot.mm_sim;
 
+import de.DrP3pp3r.wot.mm_sim.database.Database;
 import de.DrP3pp3r.wot.mm_sim.tanks.TankClass;
 import de.DrP3pp3r.wot.mm_sim.tanks.TankType;
 import de.DrP3pp3r.wot.mm_sim.tanks.TankTypeSelector;
@@ -11,6 +12,10 @@ public class MatchmakerSimulation
     public static void main( String[] args )
     {
         System.out.println( "MatchmakerSimulation was started!" );
+        
+        Database database = new Database();
+        
+        
         TankType is3 = new TankType("IS-3", TankClass.HEAVY_TANK, 8, 8, 10);
         TankType loewe = new TankType("Löwe", TankClass.HEAVY_TANK, 8, 8, 10);
         TankType progetto46 = new TankType("Progetto 46", TankClass.MEDIUM_TANK, 8, 8, 10);

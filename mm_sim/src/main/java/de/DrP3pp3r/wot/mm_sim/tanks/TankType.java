@@ -1,9 +1,17 @@
 package de.DrP3pp3r.wot.mm_sim.tanks;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class TankType
 {
 	
-public TankType(String name, TankClass tankClass, int tier, int minBattleTier, int maxBattleTier) 
+public TankType()
+{
+}
+	
+public TankType(String name, TankClass tankClass, Integer tier, Integer minBattleTier, Integer maxBattleTier) 
 {
 	this.name = name;
 	this.tankClass = tankClass;
@@ -12,9 +20,21 @@ public TankType(String name, TankClass tankClass, int tier, int minBattleTier, i
 	this.maxBattleTier = maxBattleTier;
 }
 
+public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
+
 public String getName()
 {
 	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
 }
 
 public TankClass getTankClass()
@@ -22,25 +42,43 @@ public TankClass getTankClass()
 	return tankClass;
 }
 
-public int getTier()
+public void setTankClass(TankClass tankClass) {
+	this.tankClass = tankClass;
+}
+
+public Integer getTier()
 {
 	return tier;
 }
 
-public int getMinBattleTier()
+public void setTier(Integer tier) {
+	this.tier = tier;
+}
+
+public Integer getMinBattleTier()
 {
 	return minBattleTier;
 }
 
-public int getMaxBattleTier()
+public void setMinBattleTier(Integer minBattleTier) {
+	this.minBattleTier = minBattleTier;
+}
+
+public Integer getMaxBattleTier()
 {
 	return maxBattleTier;
 }
 
-private final String name;
-private final TankClass tankClass;
-private final int tier;
-private final int minBattleTier;
-private final int maxBattleTier;
+public void setMaxBattleTier(Integer maxBattleTier) {
+	this.maxBattleTier = maxBattleTier;
+}
+
+@Id
+private Integer id;
+private String name;
+private TankClass tankClass;
+private Integer tier;
+private Integer minBattleTier;
+private Integer maxBattleTier;
 
 }
