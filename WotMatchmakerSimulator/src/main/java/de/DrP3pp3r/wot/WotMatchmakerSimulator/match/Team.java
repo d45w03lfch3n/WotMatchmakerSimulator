@@ -1,10 +1,10 @@
-package de.DrP3pp3r.wot.mm_sim.match;
+package de.DrP3pp3r.wot.WotMatchmakerSimulator.match;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import de.DrP3pp3r.wot.mm_sim.tanks.TankType;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
 
 public class Team
 {

@@ -1,4 +1,4 @@
-package de.DrP3pp3r.wot.mm_sim;
+package de.DrP3pp3r.wot.WotMatchmakerSimulator;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,11 +7,11 @@ import java.util.Map;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import de.DrP3pp3r.wot.mm_sim.database.Database;
-import de.DrP3pp3r.wot.mm_sim.tanks.TankType;
-import de.DrP3pp3r.wot.mm_sim.tanks.TankTypeSelector;
-import de.DrP3pp3r.wot.mm_sim.tanks.TankUsage;
-import de.DrP3pp3r.wot.mm_sim.tanks.TankUse;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.database.Database;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankTypeSelector;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankUsage;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankUse;
 
 public class MatchmakerSimulation 
 {

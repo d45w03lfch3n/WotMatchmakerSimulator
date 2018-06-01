@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.DrP3pp3r.wot</groupId>
-  <artifactId>mm_sim</artifactId>
+  <artifactId>WotMatchmakerSimulator</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>mm_sim</name>
+  <name>WotMatchmakerSimulator</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -46,7 +46,7 @@
         <goal>java</goal>
        </goals>
        <configuration>
-        <mainClass>de.DrP3pp3r.wot.mm_sim.MatchmakerSimulation</mainClass>
+        <mainClass>de.DrP3pp3r.wot.WotMatchmakerSimulator.MatchmakerSimulation</mainClass>
         <arguments>
         	<!--<argument>ea</argument>-->
         </arguments>

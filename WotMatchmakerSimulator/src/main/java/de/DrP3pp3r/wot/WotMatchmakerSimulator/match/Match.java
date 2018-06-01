@@ -1,4 +1,4 @@
-package de.DrP3pp3r.wot.mm_sim.match;
+package de.DrP3pp3r.wot.WotMatchmakerSimulator.match;
 
 public class Match {
 	

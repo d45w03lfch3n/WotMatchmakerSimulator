@@ -1,4 +1,4 @@
-package de.DrP3pp3r.wot.mm_sim.database;
+package de.DrP3pp3r.wot.WotMatchmakerSimulator.database;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -10,8 +10,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import de.DrP3pp3r.wot.mm_sim.tanks.TankType;
-import de.DrP3pp3r.wot.mm_sim.tanks.TankUse;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankUse;
 
 public class Database
 {

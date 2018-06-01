@@ -1,4 +1,4 @@
-package de.DrP3pp3r.wot.mm_sim.database;
+package de.DrP3pp3r.wot.WotMatchmakerSimulator.database;
 
 import org.hibernate.Session;
 

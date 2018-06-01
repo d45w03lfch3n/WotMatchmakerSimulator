@@ -1,4 +1,4 @@
-package de.DrP3pp3r.wot.mm_sim.tanks;
+package de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks;
 
 public class TankTypeSelectionInfo implements Comparable<TankTypeSelectionInfo>
 {
