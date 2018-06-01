@@ -76,7 +76,7 @@ public class MatchmakerSimulation
 //        	System.out.format("Appearance of tank '%s' is %.4f%%.\n", count.getKey(), (double)count.getValue()/tankCount*100);
 //        }
         
-        API api = new API(tankTypeSelector);
+        API api = new API(database, tankTypeSelector);
         
         System.out.format("Starting queue.\n");        
         api.getQueue().start(10000);

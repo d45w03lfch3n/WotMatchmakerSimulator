@@ -22,7 +22,7 @@ public class Database
 		configureSessionFactory();
 	}
     
-    public <T> T execute(IQuery<T> query)
+    public <T> T execute(IFunction<T> function)
     {
     	Session session = null;
         Transaction transaction = null;
@@ -34,7 +34,7 @@ public class Database
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             
-            result = query.execute(session);
+            result = function.execute(session);
              
             session.flush();
             transaction.commit();
@@ -61,6 +61,39 @@ public class Database
         }
         
         return result;
+    }
+    
+    public void execute(IProcedure procedure)
+    {
+    	Session session = null;
+        Transaction transaction = null;
+         
+        try
+        {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            
+            procedure.execute(session);
+             
+            session.flush();
+            transaction.commit();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+
+            if(transaction != null)
+            {
+            	transaction.rollback();
+            }
+        } 
+        finally 
+        {
+            if(session != null)
+            {
+                session.close();
+            }
+        }
     }
     
     private static void configureSessionFactory() throws HibernateException
