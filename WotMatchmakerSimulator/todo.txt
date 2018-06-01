@@ -1,5 +1,6 @@
 General:
 - log4j
+- separate DB entities from business logic entities
 
 TankUse:
 - possibility to have different sets in database (e.g. for busy time on server, for slow time on server, ...)
@@ -7,3 +8,7 @@ TankUse:
 Queue:
 - protect from overflow (set size limit)
 - equally create tanks within one second (not just in one burst)
+- add support for platoons (create 2 or 3 tank platoons, e.g. certain percentage of tanks is put in platoons)
+
+Writing a matchmaker:
+- Dependency injection of matchmaker implementation (implementation of IMatchmaker)
