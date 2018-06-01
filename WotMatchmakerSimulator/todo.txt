@@ -1,0 +1,9 @@
+General:
+- log4j
+
+TankUse:
+- possibility to have different sets in database (e.g. for busy time on server, for slow time on server, ...)
+
+Queue:
+- protect from overflow (set size limit)
+- equally create tanks within one second (not just in one burst)

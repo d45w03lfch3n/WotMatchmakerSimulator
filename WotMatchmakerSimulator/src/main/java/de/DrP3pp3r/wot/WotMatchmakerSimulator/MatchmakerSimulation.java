@@ -7,6 +7,7 @@ import java.util.Map;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.api.API;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.database.Database;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankTypeSelector;
@@ -50,29 +51,45 @@ public class MatchmakerSimulation
         System.out.print(tankUsage.toString());
         
         TankTypeSelector tankTypeSelector = tankUsage.buildTankTypeSelector();
-        TankType selectedTankType = null;
-//        TankType selectedTankType = tankTypeSelector.getTankType(0.5);
-//        System.out.format("The selected tank type is '%s.\n", selectedTankType.getName());
+//        TankType selectedTankType = null;
+////        TankType selectedTankType = tankTypeSelector.getTankType(0.5);
+////        System.out.format("The selected tank type is '%s.\n", selectedTankType.getName());
+//        
+//        System.out.format("Initializing counter map.\n");
+//        Map<String, Integer> counterMap = new HashMap<String, Integer>();
+//        for(TankType t : tankTypes)
+//        {
+//        	counterMap.put(t.getName(), 0);
+//        }
+//
+//        System.out.format("Selecting tanks.\n");
+//        Integer tankCount = 100000;
+//        for(int i = 0; i < tankCount; ++i)
+//        {
+//        	selectedTankType = tankTypeSelector.getRandomTankType();
+//        	counterMap.put(selectedTankType.getName(), counterMap.get(selectedTankType.getName()) + 1);
+//        }
+//        
+//        System.out.format("Tank appearances:\n");
+//        for(Map.Entry<String, Integer> count : counterMap.entrySet())
+//        {
+//        	System.out.format("Appearance of tank '%s' is %.4f%%.\n", count.getKey(), (double)count.getValue()/tankCount*100);
+//        }
         
-        System.out.format("Initializing counter map.\n");
-        Map<String, Integer> counterMap = new HashMap<String, Integer>();
-        for(TankType t : tankTypes)
-        {
-        	counterMap.put(t.getName(), 0);
-        }
-
-        System.out.format("Selecting tanks.\n");
-        Integer tankCount = 100000;
-        for(int i = 0; i < tankCount; ++i)
-        {
-        	selectedTankType = tankTypeSelector.getRandomTankType();
-        	counterMap.put(selectedTankType.getName(), counterMap.get(selectedTankType.getName()) + 1);
-        }
+        API api = new API(tankTypeSelector);
         
-        System.out.format("Tank appearances:\n");
-        for(Map.Entry<String, Integer> count : counterMap.entrySet())
+        System.out.format("Starting queue.\n");        
+        api.getQueue().start(10000);
+        
+        try
         {
-        	System.out.format("Appearance of tank '%s' is %.4f%%.\n", count.getKey(), (double)count.getValue()/tankCount*100);
-        }
+			Thread.sleep(5000);
+		}
+        catch (InterruptedException e)
+        {
+		}
+        
+        System.out.format("Stopping queue.\n");        
+        api.getQueue().stop();
     }
 }
