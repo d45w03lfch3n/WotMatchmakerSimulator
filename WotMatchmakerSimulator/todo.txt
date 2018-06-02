@@ -12,3 +12,12 @@ Queue:
 
 Writing a matchmaker:
 - Dependency injection of matchmaker implementation (implementation of IMatchmaker)
+
+
+Example matchmaker:
+- Balance tanks per tier in a match (same amount of each tier in each team)
+- Balance tank types (same amount of class per team)
+- Limit number of arties per team (max. 3)
+
+Statistics:
+- Avg. enemy tank tier per tank
