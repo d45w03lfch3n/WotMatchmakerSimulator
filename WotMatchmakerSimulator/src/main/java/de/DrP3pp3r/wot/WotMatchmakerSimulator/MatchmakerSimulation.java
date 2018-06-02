@@ -23,8 +23,8 @@ public class MatchmakerSimulation
         System.out.println( "MatchmakerSimulation was started!" );
         
         Boolean optionCreateTankTypes = false;
-        Boolean optionTankTypeSelectionTest = true;
-        Boolean optionMatchmaker = false;
+        Boolean optionTankTypeSelectionTest = false;
+        Boolean optionMatchmaker = true;
         
         Database database = new Database();
         
@@ -103,7 +103,7 @@ public class MatchmakerSimulation
 	        
 	        try
 	        {
-				Thread.sleep(1800);
+				Thread.sleep(60000);
 			}
 	        catch (InterruptedException e)
 	        {
@@ -126,7 +126,7 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "Strv fm/21", TankClass.LIGHT_TANK, 1, 1, 2, 1736);
     	createTankTypeAndUses(database, "T1 Cunningham", TankClass.LIGHT_TANK, 1, 1, 2, 2774);
     	createTankTypeAndUses(database, "MS-1", TankClass.LIGHT_TANK, 1, 1, 2, 2686);
-    	createTankTypeAndUses(database, "Vickers TankClass.MEDIUM_TANK Mk. I", TankClass.MEDIUM_TANK, 1, 1, 2, 2676);
+    	createTankTypeAndUses(database, "Vickers Medium", TankClass.MEDIUM_TANK, 1, 1, 2, 2676);
     	createTankTypeAndUses(database, "Vickers Mk. E Type B", TankClass.LIGHT_TANK, 2, 2, 3, 1128);
     	createTankTypeAndUses(database, "LT vz. 35", TankClass.LIGHT_TANK, 2, 2, 3, 1133);
     	createTankTypeAndUses(database, "Renault R35", TankClass.LIGHT_TANK, 2, 2, 3, 518);
@@ -144,13 +144,13 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "Strv m/38", TankClass.LIGHT_TANK, 2, 2, 3, 1643);
     	createTankTypeAndUses(database, "L-60", TankClass.LIGHT_TANK, 2, 2, 3, 1896);
     	createTankTypeAndUses(database, "M2", TankClass.LIGHT_TANK, 2, 2, 3, 1015);
-    	createTankTypeAndUses(database, "TankClass.LIGHT_TANK Mk. VIC", TankClass.LIGHT_TANK, 2, 2, 2, 941);
+    	createTankTypeAndUses(database, "Light Mk. VIC", TankClass.LIGHT_TANK, 2, 2, 2, 941);
     	createTankTypeAndUses(database, "Cruiser Mk. III", TankClass.LIGHT_TANK, 2, 2, 3, 3510);
     	createTankTypeAndUses(database, "Cruiser Mk. I", TankClass.LIGHT_TANK, 2, 2, 3, 1157);
     	createTankTypeAndUses(database, "T7 Combat Car", TankClass.LIGHT_TANK, 2, 2, 2, 1638);
-    	createTankTypeAndUses(database, "T2 TankClass.LIGHT_TANK Tank", TankClass.LIGHT_TANK, 2, 2, 3, 2045);
+    	createTankTypeAndUses(database, "T2 Light Tank", TankClass.LIGHT_TANK, 2, 2, 3, 2045);
     	createTankTypeAndUses(database, "T1E6", TankClass.LIGHT_TANK, 2, 2, 3, 911);
-    	createTankTypeAndUses(database, "M2 TankClass.LIGHT_TANK Tank", TankClass.LIGHT_TANK, 2, 2, 3, 6798);
+    	createTankTypeAndUses(database, "M2 Light Tank", TankClass.LIGHT_TANK, 2, 2, 3, 6798);
     	createTankTypeAndUses(database, "Tetrarch", TankClass.LIGHT_TANK, 2, 2, 3, 1349);
     	createTankTypeAndUses(database, "T-60", TankClass.LIGHT_TANK, 2, 2, 3, 1177);
     	createTankTypeAndUses(database, "T-45", TankClass.LIGHT_TANK, 2, 2, 3, 1544);
@@ -159,8 +159,8 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "M14/41", TankClass.MEDIUM_TANK, 2, 2, 3, 16919);
     	createTankTypeAndUses(database, "Type 89 I-Go/Chi-Ro", TankClass.MEDIUM_TANK, 2, 2, 3, 1456);
     	createTankTypeAndUses(database, "Chi-Ni", TankClass.MEDIUM_TANK, 2, 2, 3, 474);
-    	createTankTypeAndUses(database, "Vickers TankClass.MEDIUM_TANK Mk. II", TankClass.MEDIUM_TANK, 2, 2, 3, 1359);
-    	createTankTypeAndUses(database, "T2 TankClass.MEDIUM_TANK Tank", TankClass.MEDIUM_TANK, 2, 2, 3, 4214);
+    	createTankTypeAndUses(database, "Vickers Medium Mk. II", TankClass.MEDIUM_TANK, 2, 2, 3, 1359);
+    	createTankTypeAndUses(database, "T2 Medium Tank", TankClass.MEDIUM_TANK, 2, 2, 3, 4214);
     	createTankTypeAndUses(database, "Renault FT 75 BS", TankClass.SELF_PROPELLED_GUN, 2, 2, 3, 1113);
     	createTankTypeAndUses(database, "G.Pz. Mk. VI (e)", TankClass.SELF_PROPELLED_GUN, 2, 2, 3, 2429);
     	createTankTypeAndUses(database, "Loyd Gun Carriage", TankClass.SELF_PROPELLED_GUN, 2, 2, 3, 1139);
@@ -173,7 +173,7 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "Universal Carrier 2-pdr", TankClass.TANK_DESTROYER, 2, 2, 3, 1023);
     	createTankTypeAndUses(database, "T3 HMC", TankClass.TANK_DESTROYER, 2, 2, 3, 1703);
     	createTankTypeAndUses(database, "AT-1", TankClass.TANK_DESTROYER, 2, 2, 3, 2104);
-    	createTankTypeAndUses(database, "Type 91 TankClass.HEAVY_TANK", TankClass.HEAVY_TANK, 3, 3, 4, 3001);
+    	createTankTypeAndUses(database, "Type 91 Heavy", TankClass.HEAVY_TANK, 3, 3, 4, 3001);
     	createTankTypeAndUses(database, "Type 2597 Chi-Ha", TankClass.LIGHT_TANK, 3, 3, 4, 1851);
     	createTankTypeAndUses(database, "LT vz. 38", TankClass.LIGHT_TANK, 3, 3, 4, 2930);
     	createTankTypeAndUses(database, "AMX 38", TankClass.LIGHT_TANK, 3, 3, 4, 2303);
@@ -195,7 +195,7 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "T-70", TankClass.LIGHT_TANK, 3, 3, 4, 2419);
     	createTankTypeAndUses(database, "T-46", TankClass.LIGHT_TANK, 3, 3, 4, 6332);
     	createTankTypeAndUses(database, "T-127", TankClass.LIGHT_TANK, 3, 3, 4, 6649);
-    	createTankTypeAndUses(database, "M3 TankClass.LIGHT_TANK", TankClass.LIGHT_TANK, 3, 3, 4, 144);
+    	createTankTypeAndUses(database, "M3 Light", TankClass.LIGHT_TANK, 3, 3, 4, 144);
     	createTankTypeAndUses(database, "LTP", TankClass.LIGHT_TANK, 3, 3, 4, 2059);
     	createTankTypeAndUses(database, "BT-SV", TankClass.LIGHT_TANK, 3, 3, 4, 151);
     	createTankTypeAndUses(database, "BT-7 artillery", TankClass.LIGHT_TANK, 3, 3, 4, 3366);
@@ -207,8 +207,8 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "Grosstraktor - Krupp", TankClass.MEDIUM_TANK, 3, 3, 4, 217);
     	createTankTypeAndUses(database, "M15/42", TankClass.MEDIUM_TANK, 3, 3, 4, 45567);
     	createTankTypeAndUses(database, "Type 97 Chi-Ha", TankClass.MEDIUM_TANK, 3, 3, 4, 1040);
-    	createTankTypeAndUses(database, "Vickers TankClass.MEDIUM_TANK Mk. III", TankClass.MEDIUM_TANK, 3, 3, 4, 2460);
-    	createTankTypeAndUses(database, "M2 TankClass.MEDIUM_TANK Tank", TankClass.MEDIUM_TANK, 3, 3, 4, 19584);
+    	createTankTypeAndUses(database, "Vickers Medium Mk. III", TankClass.MEDIUM_TANK, 3, 3, 4, 2460);
+    	createTankTypeAndUses(database, "M2 Medium Tank", TankClass.MEDIUM_TANK, 3, 3, 4, 19584);
     	createTankTypeAndUses(database, "T-29", TankClass.MEDIUM_TANK, 3, 3, 4, 23854);
     	createTankTypeAndUses(database, "Lorraine 39L AM", TankClass.SELF_PROPELLED_GUN, 3, 3, 4, 1781);
     	createTankTypeAndUses(database, "Wespe", TankClass.SELF_PROPELLED_GUN, 3, 3, 4, 3910);
@@ -230,7 +230,7 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "B1", TankClass.HEAVY_TANK, 4, 4, 5, 4664);
     	createTankTypeAndUses(database, "Pz.Kpfw. B2 740 (f)", TankClass.HEAVY_TANK, 4, 4, 4, 5602);
     	createTankTypeAndUses(database, "Durchbruchswagen 2", TankClass.HEAVY_TANK, 4, 4, 5, 7482);
-    	createTankTypeAndUses(database, "Type 95 TankClass.HEAVY_TANK", TankClass.HEAVY_TANK, 4, 4, 5, 7811);
+    	createTankTypeAndUses(database, "Type 95 Heavy", TankClass.HEAVY_TANK, 4, 4, 5, 7811);
     	createTankTypeAndUses(database, "M5A1 Stuart", TankClass.LIGHT_TANK, 4, 4, 6, 8436);
     	createTankTypeAndUses(database, "AMX 40", TankClass.LIGHT_TANK, 4, 4, 6, 7297);
     	createTankTypeAndUses(database, "Pz.Kpfw. II Luchs", TankClass.LIGHT_TANK, 4, 4, 6, 28740);
@@ -280,7 +280,7 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "Excelsior", TankClass.HEAVY_TANK, 5, 5, 6, 7558);
     	createTankTypeAndUses(database, "Churchill I", TankClass.HEAVY_TANK, 5, 5, 7, 13401);
     	createTankTypeAndUses(database, "T14", TankClass.HEAVY_TANK, 5, 5, 6, 3081);
-    	createTankTypeAndUses(database, "T1 TankClass.HEAVY_TANK Tank", TankClass.HEAVY_TANK, 5, 5, 7, 14513);
+    	createTankTypeAndUses(database, "T1 Heavy", TankClass.HEAVY_TANK, 5, 5, 7, 14513);
     	createTankTypeAndUses(database, "KV-220-2 Beta Test", TankClass.HEAVY_TANK, 5, 5, 6, 1);
     	createTankTypeAndUses(database, "KV-220-2", TankClass.HEAVY_TANK, 5, 5, 6, 1454);
     	createTankTypeAndUses(database, "KV-1S", TankClass.HEAVY_TANK, 5, 5, 7, 24281);
@@ -337,7 +337,7 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "VK 36.01 (H)", TankClass.HEAVY_TANK, 6, 6, 8, 20325);
     	createTankTypeAndUses(database, "Tiger 131", TankClass.HEAVY_TANK, 6, 6, 8, 5517);
     	createTankTypeAndUses(database, "O-I", TankClass.HEAVY_TANK, 6, 6, 8, 35510);
-    	createTankTypeAndUses(database, "TankClass.HEAVY_TANK Tank No. VI", TankClass.HEAVY_TANK, 6, 6, 8, 9301);
+    	createTankTypeAndUses(database, "Heavy Tank No. VI", TankClass.HEAVY_TANK, 6, 6, 8, 9301);
     	createTankTypeAndUses(database, "TOG II*", TankClass.HEAVY_TANK, 6, 6, 7, 3659);
     	createTankTypeAndUses(database, "Churchill VII", TankClass.HEAVY_TANK, 6, 6, 8, 13007);
     	createTankTypeAndUses(database, "M6", TankClass.HEAVY_TANK, 6, 6, 8, 13182);
@@ -572,7 +572,7 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "VK 45.02 (P) Ausf. B", TankClass.HEAVY_TANK, 9, 9, 11, 13642);
     	createTankTypeAndUses(database, "Mauschen", TankClass.HEAVY_TANK, 9, 9, 11, 12992);
     	createTankTypeAndUses(database, "E 75", TankClass.HEAVY_TANK, 9, 9, 11, 36979);
-    	createTankTypeAndUses(database, "Type 4 TankClass.HEAVY_TANK", TankClass.HEAVY_TANK, 9, 9, 11, 42658);
+    	createTankTypeAndUses(database, "Type 4 Heavy", TankClass.HEAVY_TANK, 9, 9, 11, 42658);
     	createTankTypeAndUses(database, "Emil II", TankClass.HEAVY_TANK, 9, 9, 11, 17113);
     	createTankTypeAndUses(database, "Conqueror", TankClass.HEAVY_TANK, 9, 9, 11, 33985);
     	createTankTypeAndUses(database, "M103", TankClass.HEAVY_TANK, 9, 9, 11, 21008);
@@ -624,13 +624,13 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "Pz.Kpfw. VII", TankClass.HEAVY_TANK, 10, 10, 12, 5811);
     	createTankTypeAndUses(database, "Maus", TankClass.HEAVY_TANK, 10, 10, 12, 10173);
     	createTankTypeAndUses(database, "E 100", TankClass.HEAVY_TANK, 10, 10, 12, 26812);
-    	createTankTypeAndUses(database, "Type 5 TankClass.HEAVY_TANK", TankClass.HEAVY_TANK, 10, 10, 12, 19450);
+    	createTankTypeAndUses(database, "Type 5 Heavy", TankClass.HEAVY_TANK, 10, 10, 12, 19450);
     	createTankTypeAndUses(database, "Kranvagn", TankClass.HEAVY_TANK, 10, 10, 12, 5041);
     	createTankTypeAndUses(database, "T95/Chieftain", TankClass.HEAVY_TANK, 10, 10, 12, 1);
     	createTankTypeAndUses(database, "Super Conqueror", TankClass.HEAVY_TANK, 10, 10, 12, 19101);
     	createTankTypeAndUses(database, "FV215b", TankClass.HEAVY_TANK, 10, 10, 12, 2697);
     	createTankTypeAndUses(database, "Chieftain Mk. 6", TankClass.HEAVY_TANK, 10, 10, 12, 4);
-    	createTankTypeAndUses(database, "T57 TankClass.HEAVY_TANK Tank", TankClass.HEAVY_TANK, 10, 10, 12, 16548);
+    	createTankTypeAndUses(database, "T57 Heavy Tank", TankClass.HEAVY_TANK, 10, 10, 12, 16548);
     	createTankTypeAndUses(database, "T110E5", TankClass.HEAVY_TANK, 10, 10, 12, 13657);
     	createTankTypeAndUses(database, "Object 777 Version II", TankClass.HEAVY_TANK, 10, 10, 12, 1);
     	createTankTypeAndUses(database, "Object 705A", TankClass.HEAVY_TANK, 10, 10, 12, 11188);
@@ -658,7 +658,7 @@ public class MatchmakerSimulation
     	createTankTypeAndUses(database, "M48A5 Patton", TankClass.MEDIUM_TANK, 10, 10, 12, 13946);
     	createTankTypeAndUses(database, "M48A2/T54E2/T123E6", TankClass.MEDIUM_TANK, 10, 10, 12, 1);
     	createTankTypeAndUses(database, "T-62A", TankClass.MEDIUM_TANK, 10, 10, 12, 11715);
-    	createTankTypeAndUses(database, "T-22 TankClass.MEDIUM_TANK", TankClass.MEDIUM_TANK, 10, 10, 12, 120);
+    	createTankTypeAndUses(database, "T-22 medium", TankClass.MEDIUM_TANK, 10, 10, 12, 120);
     	createTankTypeAndUses(database, "Object 907", TankClass.MEDIUM_TANK, 10, 10, 12, 5602);
     	createTankTypeAndUses(database, "Object 430U", TankClass.MEDIUM_TANK, 10, 10, 12, 22430);
     	createTankTypeAndUses(database, "Object 430B", TankClass.MEDIUM_TANK, 10, 10, 12, 4);

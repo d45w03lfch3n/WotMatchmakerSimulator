@@ -1,7 +1,5 @@
 package de.DrP3pp3r.wot.WotMatchmakerSimulator.match;
 
-import java.util.UUID;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

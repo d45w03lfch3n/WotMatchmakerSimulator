@@ -1,8 +1,5 @@
 package de.DrP3pp3r.wot.WotMatchmakerSimulator.match;
 
-import java.util.Map;
-import java.util.TreeMap;
-
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.api.API;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
 
@@ -19,7 +16,7 @@ public class ExampleMatchmaker extends ThreadedMatchmaker {
 		initializeMatches();
 		
 		API api = getApi();
-		api.getQueue().start(400);
+		api.getQueue().start(1000);
 			
 		while(shouldRun())
 		{
@@ -27,6 +24,7 @@ public class ExampleMatchmaker extends ThreadedMatchmaker {
 			if(tank != null)
 			{
 				Integer battleTier = utils.rollBattleTier(tank.getMinBattleTier(), tank.getMaxBattleTier());
+				assert battleTier >= 1 && battleTier <= 12 : "Bad battle tier!";
 				Match match = matchesByBattleTier[battleTier - 1];				
 				if(!match.getGreenTeam().isFull())
 				{
@@ -88,7 +86,7 @@ public class ExampleMatchmaker extends ThreadedMatchmaker {
 	{
 		// TODO magic consts
 		matchesByBattleTier = new Match[12];
-		for(Integer i = 1; i < 12; ++i)
+		for(Integer i = 1; i <= 12; ++i)
 		{
 			matchesByBattleTier[i - 1] = new Match(i);
 		}
