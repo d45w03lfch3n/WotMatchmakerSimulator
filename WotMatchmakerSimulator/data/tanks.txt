@@ -1,3 +1,5 @@
+data from http://www.vbaddict.net/tankstatistics/overall
+
 Tier 1	light	Renault NC-31	1	light	china	1003	1.38	1.57	3.93min	7.59min	693.07m	0.91	29.63%	0
 Tier 1	light	Kolohousenka	1	light	cz	1370	0.75	0.71	4.04min	6.03min	578.73m	0.69	31.36%	0
 Tier 1	light	Renault FT	1	light	france	1182	0.49	0.09	3.77min	6.66min	641.85m	0.75	23.14%	0
