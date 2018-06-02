@@ -1,26 +1,43 @@
 package de.DrP3pp3r.wot.WotMatchmakerSimulator.match;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+//TODO check if teams are ok for battle tiers
 @Entity
 public class Match {
 	
-public Match(Session session)
+public Match()
 {
-	team = new Team[2];
-	this.session = session;
+}
+	
+public Match(Integer tier)
+{
+	greenTeam = new Team();
+	redTeam = new Team();
+	this.tier = tier;
 }
 
-public Team getTeam1()
+public Team getGreenTeam()
 {
-	return team[0];
+	return greenTeam;
 }
 
-public Team getTeam2()
+public void setGreenTeam(Team greenTeam) {
+	this.greenTeam = greenTeam;
+}
+
+public Team getRedTeam()
 {
-	return team[1];
+	return redTeam;
+}
+
+public void setRedTeam(Team redTeam) {
+	this.redTeam = redTeam;
 }
 
 public Integer getId() {
@@ -31,12 +48,12 @@ public void setId(Integer id) {
 	this.id = id;
 }
 
-public Team[] getTeam() {
-	return team;
+public Integer getTier() {
+	return tier;
 }
 
-public void setTeam(Team[] team) {
-	this.team = team;
+public void setTier(Integer tier) {
+	this.tier = tier;
 }
 
 public Session getSession() {
@@ -48,8 +65,13 @@ public void setSession(Session session) {
 }
 
 @Id
+@GeneratedValue(strategy=GenerationType.AUTO)
 private Integer id;
-private Team[] team;
+private Integer tier;
+@OneToOne(cascade = CascadeType.PERSIST)
+private Team greenTeam;
+@OneToOne(cascade = CascadeType.PERSIST)
+private Team redTeam;
 @OneToOne
 private Session session;
 

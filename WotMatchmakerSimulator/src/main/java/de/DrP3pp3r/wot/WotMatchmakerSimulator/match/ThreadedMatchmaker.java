@@ -6,9 +6,18 @@ import de.DrP3pp3r.wot.WotMatchmakerSimulator.api.API;
 
 public abstract class ThreadedMatchmaker implements IMatchmaker, Runnable
 {
+	ThreadedMatchmaker()
+	{
+		doRun = new AtomicBoolean(false);
+	}
+	
 	@Override
 	public void setApi(API api) {
 		this.api = api;		
+	}
+
+	protected API getApi() {
+		return api;
 	}
 
 	@Override
@@ -58,10 +67,15 @@ public abstract class ThreadedMatchmaker implements IMatchmaker, Runnable
 	}
 	
 	public abstract void runImpl();
+	
+	protected Boolean shouldRun()
+	{
+		return doRun.get();
+	}
 
 	
 	private API api;
 	
 	private Thread workerThread;
-	protected AtomicBoolean doRun;
+	private AtomicBoolean doRun;
 }

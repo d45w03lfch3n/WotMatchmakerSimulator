@@ -85,7 +85,7 @@ public class Queue implements Runnable
 				}
 			}
 			
-			System.out.format("Tanks in queue: '%d'", tankTypes.size());
+			System.out.format("Tanks in queue: '%d'\n", tankTypes.size());
 		}
 		catch(InterruptedException ex)
 		{
@@ -93,6 +93,13 @@ public class Queue implements Runnable
 			doRun.set(false);
 		}
 	}	
+	
+	public TankType getNextTank()
+	{
+		return tankTypes.poll();
+	}
+	
+	// TODO method to get a bunch of tanks?!
 
 	private TankTypeSelector tankTypeSelector;
 	private ConcurrentLinkedQueue<TankType> tankTypes;

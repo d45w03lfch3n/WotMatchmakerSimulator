@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.api.API;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.database.Database;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.match.ExampleMatchmaker;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankTypeSelector;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankUsage;
@@ -78,18 +79,26 @@ public class MatchmakerSimulation
         
         API api = new API(database, tankTypeSelector);
         
-        System.out.format("Starting queue.\n");        
-        api.getQueue().start(10000);
+        ExampleMatchmaker mm = new ExampleMatchmaker();
+        mm.setApi(api);
+        mm.start();
+        
+//        System.out.format("Starting queue.\n");        
+//        api.getQueue().start(10000);
         
         try
         {
-			Thread.sleep(5000);
+			Thread.sleep(1800);
 		}
         catch (InterruptedException e)
         {
 		}
         
-        System.out.format("Stopping queue.\n");        
-        api.getQueue().stop();
+        mm.stop();
+        
+        System.out.format("Matchmaker created '%d' matches and matched '%d' tanks.\n", mm.getFinishedMatches(), mm.getMatchedTanks());
+        
+//        System.out.format("Stopping queue.\n");        
+//        api.getQueue().stop();
     }
 }

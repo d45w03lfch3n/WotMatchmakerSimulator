@@ -12,6 +12,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.api.UnmatchedTank;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.match.Match;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.match.Team;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankUse;
 
@@ -104,7 +105,8 @@ public class Database
         			.addAnnotatedClass(TankUse.class)
         			.addAnnotatedClass(de.DrP3pp3r.wot.WotMatchmakerSimulator.match.Session.class)
         			.addAnnotatedClass(Match.class)
-        			.addAnnotatedClass(UnmatchedTank.class);
+        			.addAnnotatedClass(UnmatchedTank.class)
+        			.addAnnotatedClass(Team.class);
         MetadataBuilder metadataBuilder = sources.getMetadataBuilder();
         Metadata metaData =  metadataBuilder.applyImplicitSchemaName( "MatchmakerSimulator" ).build();
         sessionFactory = metaData.getSessionFactoryBuilder().build();
