@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -112,7 +113,7 @@ public class MatchmakerSimulation
 		{
 			API api = new API(database, tankTypeSelector);
 
-			IMatchmaker mm = loadMatchmaker(configuration.getMatchmakerPath());
+			IMatchmaker mm = loadMatchmaker2(configuration.getMatchmakerPath());
 			if(mm == null)
 			{
 				System.out.format("No matchmaker!\n");
@@ -774,11 +775,11 @@ public class MatchmakerSimulation
 			{
 				System.out.format("%s\n", u.toString());
 			}
+			
 			System.out.format("Loading Matchmaker...\n");
 
 			ServiceLoader<ThreadedMatchmaker> matchmakers = ServiceLoader.load(ThreadedMatchmaker.class, loader);
-			// ServiceLoader<IMatchmaker> matchmakers = ServiceLoader.load(
-			// IMatchmaker.class );
+			//ServiceLoader<IMatchmaker> matchmakers = ServiceLoader.load( IMatchmaker.class, loader );
 
 			System.out.format("Loaded Matchmakers.\n");
 
@@ -830,6 +831,125 @@ public class MatchmakerSimulation
 			//
 			// }
 
+		}
+		catch(MalformedURLException ex)
+		{
+			System.out.format("Bad URL: %s\n", ex.getMessage());
+		}
+		catch(IOException ex)
+		{
+			System.out.format("IO error: %s\n", ex.getMessage());
+		}
+		finally
+		{
+			try
+			{
+				if(jarFile != null)
+				{
+					jarFile.close();
+				}
+			}
+			catch(IOException ex)
+			{
+				System.out.format("Error closing jar: %s\n", ex.getMessage());
+			}
+		}
+
+		return result;
+	}
+	
+	private static IMatchmaker loadMatchmaker2(String jarFilePath)
+	{
+		IMatchmaker result = null;
+		JarFile jarFile = null;
+		try
+		{
+			File file = new File(jarFilePath);
+			if(file.exists())
+			{
+				System.out.format("File exists.\n");
+			}
+			else
+			{
+				System.out.format("File does not exists.\n");
+			}
+
+			URL url = file.toURI().toURL();
+			URL[] urls = new URL[] { url };
+			URLClassLoader loader = new URLClassLoader(urls, Thread.currentThread().getContextClassLoader());
+
+			for(URL u : loader.getURLs())
+			{
+				System.out.format("%s\n", u.toString());
+			}
+	
+			jarFile = new JarFile(jarFilePath);
+			Enumeration<JarEntry> e = jarFile.entries();
+			while(e.hasMoreElements())
+			{
+				JarEntry je = e.nextElement();
+				if(je.isDirectory() || !je.getName().endsWith(".class"))
+				{
+					continue;
+				}
+				
+				// -6 because of .class
+				String className = je.getName().substring(0, je.getName().length() - 6);
+				className = className.replace('/', '.');
+				Class<?> c = null;
+				try
+				{
+					System.out.format("Trying to load class '%s'.\n", className);
+					c = loader.loadClass(className);
+				}
+				catch(ClassNotFoundException e1)
+				{
+					System.out.format("Class '%s' not found.\n", className);
+				}
+				
+				Boolean isMatchmaker = false;
+				if(c != null)
+				{
+					if(Arrays.asList(c.getInterfaces()).contains(IMatchmaker.class))
+					{
+						isMatchmaker = true;
+						System.out.format("Found IMatchmaker!\n");
+						break;
+					}
+					
+					Class<?> superClass = c.getSuperclass();
+					while(superClass != null) {
+						if(Arrays.asList(superClass.getInterfaces()).contains(IMatchmaker.class))
+						{
+							isMatchmaker = true;
+							System.out.format("Found IMatchmaker!\n");
+							break;
+						}
+						superClass = superClass.getSuperclass();
+					}
+				}
+				
+				if(isMatchmaker)
+				{
+					try
+					{
+						result = (IMatchmaker)c.newInstance();
+						break;
+					}
+					catch(InstantiationException ex)
+					{
+					
+					}
+					catch(IllegalAccessException ex)
+					{
+					}
+				}
+				else
+				{
+					System.out.format("Class '%s' is no IMatchmaker.\n", className);
+				}
+			
+			}
 		}
 		catch(MalformedURLException ex)
 		{
