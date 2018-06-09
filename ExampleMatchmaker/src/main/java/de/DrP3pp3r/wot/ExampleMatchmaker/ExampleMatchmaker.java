@@ -1,10 +1,19 @@
-package de.DrP3pp3r.wot.WotMatchmakerSimulator.match;
+package de.DrP3pp3r.wot.ExampleMatchmaker;
 
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.api.API;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.match.Match;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.match.MatchmakerUtils;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.match.TeamFullException;
+import de.DrP3pp3r.wot.WotMatchmakerSimulator.match.ThreadedMatchmaker;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
 
-public class ExampleMatchmaker extends ThreadedMatchmaker {
-
+public class ExampleMatchmaker extends ThreadedMatchmaker
+{
+	public ExampleMatchmaker()
+	{
+	
+	}
+	
 	@Override
 	public void runImpl()
 	{
@@ -16,7 +25,7 @@ public class ExampleMatchmaker extends ThreadedMatchmaker {
 		initializeMatches();
 		
 		API api = getApi();
-		api.getQueue().start(1000);
+		api.getQueue().start(500);
 			
 		while(shouldRun())
 		{
@@ -72,6 +81,8 @@ public class ExampleMatchmaker extends ThreadedMatchmaker {
 		}
 		
 		api.getQueue().stop();
+		
+		System.out.format("Matchmaker created '%d' matches and matched '%d' tanks.\n", getFinishedMatches(), getMatchedTanks());
 	}
 
 	public Integer getMatchedTanks() {

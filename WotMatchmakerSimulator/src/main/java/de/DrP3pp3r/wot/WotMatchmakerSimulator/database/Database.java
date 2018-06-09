@@ -39,8 +39,6 @@ public class Database
              
             session.flush();
             transaction.commit();
-
-            return result;
         }
         catch(Exception ex)
         {

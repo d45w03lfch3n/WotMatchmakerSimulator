@@ -1,6 +1,7 @@
 General:
 - log4j
 - separate DB entities from business logic entities
+- exception handling (check all catchs)
 
 TankUse:
 - possibility to have different sets in database (e.g. for busy time on server, for slow time on server, ...)
@@ -13,11 +14,11 @@ Queue:
 Writing a matchmaker:
 - Dependency injection of matchmaker implementation (implementation of IMatchmaker)
 
-
 Example matchmaker:
 - Balance tanks per tier in a match (same amount of each tier in each team)
 - Balance tank types (same amount of class per team)
 - Limit number of arties per team (max. 3)
+- Match time out (move tanks to unmatched tanks)
 
 Statistics:
 - Avg. enemy tank tier per tank

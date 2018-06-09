@@ -71,7 +71,7 @@ public class Queue implements Runnable
 				}
 				long end = System.nanoTime();
 				long diff = end - start;
-				System.out.format("Diff: %d\n", diff);
+				//System.out.format("Diff: %d\n", diff);
 				if(diff > ns_per_s)
 				{
 					// too slow

@@ -6,7 +6,7 @@ import de.DrP3pp3r.wot.WotMatchmakerSimulator.api.API;
 
 public abstract class ThreadedMatchmaker implements IMatchmaker, Runnable
 {
-	ThreadedMatchmaker()
+	public ThreadedMatchmaker()
 	{
 		doRun = new AtomicBoolean(false);
 	}
