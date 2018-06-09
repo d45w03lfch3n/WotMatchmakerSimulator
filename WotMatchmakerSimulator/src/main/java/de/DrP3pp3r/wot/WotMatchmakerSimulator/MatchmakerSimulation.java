@@ -722,31 +722,8 @@ public class MatchmakerSimulation
 
 	private static IMatchmaker loadMatchmaker(String jarFilePath)
 	{
-		IMatchmaker result = null;
-		JarFile jarFile = null;
 		try
 		{
-			URLClassLoader systemClassLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
-			// try
-			// {
-			// Class<?> urlClassLoaderClass = URLClassLoader.class;
-			// final Class<?>[] parameters = new Class[] { URL.class };
-			// Method addUrl = urlClassLoaderClass.getDeclaredMethod("addURL",
-			// parameters);
-			// addUrl.setAccessible(true);
-			// addUrl.invoke(systemClassLoader, new Object[] { new URL("jar:file:///"
-			// + jarFilePath + "!/") });
-			// System.out.format("Add jar file '%s' to system class loader.\n",
-			// jarFilePath);
-			// }
-			// // TODO Fix this
-			// catch(Throwable t)
-			// {
-			// t.printStackTrace();
-			// throw new IOException("Error: Could not add URL to system class
-			// loader!");
-			// }
-
 			File file = new File(jarFilePath);
 
 			if(file.exists())
@@ -759,16 +736,7 @@ public class MatchmakerSimulation
 			}
 
 			URL url = file.toURI().toURL();
-
-			// System.out.format("%s\n", url.toString());
-
 			URL[] urls = new URL[] { url };
-
-//			for(URL u : urls)
-//			{
-//				System.out.format("%s\n", u.toString());
-//			}
-
 			URLClassLoader loader = new URLClassLoader(urls, Thread.currentThread().getContextClassLoader());
 
 			for(URL u : loader.getURLs())
@@ -776,10 +744,9 @@ public class MatchmakerSimulation
 				System.out.format("%s\n", u.toString());
 			}
 			
-			System.out.format("Loading Matchmaker...\n");
+			System.out.format("Loading Matchmakers...\n");
 
 			ServiceLoader<ThreadedMatchmaker> matchmakers = ServiceLoader.load(ThreadedMatchmaker.class, loader);
-			//ServiceLoader<IMatchmaker> matchmakers = ServiceLoader.load( IMatchmaker.class, loader );
 
 			System.out.format("Loaded Matchmakers.\n");
 
@@ -788,74 +755,13 @@ public class MatchmakerSimulation
 				System.out.format("Matchmaker '%s' found!'\n", mm.getClass().toString());
 				return(mm);
 			}
-
-			// jarFile = new JarFile(jarFilePath);
-			// Enumeration<JarEntry> e = jarFile.entries();
-			// while(e.hasMoreElements())
-			// {
-			// JarEntry je = e.nextElement();
-			// if(je.isDirectory() || !je.getName().endsWith(".class"))
-			// {
-			// continue;
-			// }
-			// // -6 because of .class
-			// String className = je.getName().substring(0, je.getName().length() -
-			// 6);
-			// className = className.replace('/', '.');
-			// Class<?> c = null;
-			// try
-			// {
-			// System.out.format("Trying to load class '%s'.\n", className);
-			// c = systemClassLoader.loadClass(className);
-			// //c = systemClassLoader.loadClass(je.getName());
-			// }
-			// catch(ClassNotFoundException e1)
-			// {
-			// System.out.format("Class '%s' not found.\n", className);
-			// }
-			// if(c != null && c.isAssignableFrom(IMatchmaker.class))
-			// {
-			// try
-			// {
-			// result = (IMatchmaker) c.newInstance();
-			// break;
-			// }
-			// catch(InstantiationException ex)
-			// {
-			//
-			// }
-			// catch(IllegalAccessException ex)
-			// {
-			// }
-			// }
-			//
-			// }
-
 		}
 		catch(MalformedURLException ex)
 		{
 			System.out.format("Bad URL: %s\n", ex.getMessage());
 		}
-		catch(IOException ex)
-		{
-			System.out.format("IO error: %s\n", ex.getMessage());
-		}
-		finally
-		{
-			try
-			{
-				if(jarFile != null)
-				{
-					jarFile.close();
-				}
-			}
-			catch(IOException ex)
-			{
-				System.out.format("Error closing jar: %s\n", ex.getMessage());
-			}
-		}
 
-		return result;
+		return null;
 	}
 	
 	private static IMatchmaker loadMatchmaker2(String jarFilePath)
