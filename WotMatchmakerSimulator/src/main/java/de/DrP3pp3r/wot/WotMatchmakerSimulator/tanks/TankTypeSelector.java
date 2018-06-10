@@ -7,7 +7,6 @@ import java.util.Random;
 
 public class TankTypeSelector
 {
-
 	public TankTypeSelector()
 	{
 		selectionInfos = new ArrayList<TankTypeSelectionInfo>();
@@ -51,7 +50,7 @@ public class TankTypeSelector
 	public String toString()
 	{
 		String result = "Tank selection infos:\n";
-		for (TankTypeSelectionInfo si : selectionInfos)
+		for(TankTypeSelectionInfo si : selectionInfos)
 		{
 			result += si.toString() + '\n';
 		}

@@ -8,24 +8,24 @@ import javax.persistence.Id;
 @Entity
 public class Session
 {
-public Session()
-{
-	//sessionId = UUID.randomUUID();
-}
+	public Session()
+	{
+		// sessionId = UUID.randomUUID();
+	}
 
-//public UUID getSessionId() {
-//	return sessionId;
-//}
-//
-//public void setSessionId(UUID sessionId) {
-//	this.sessionId = sessionId;
-//}
+	// public UUID getSessionId() {
+	// return sessionId;
+	// }
+	//
+	// public void setSessionId(UUID sessionId) {
+	// this.sessionId = sessionId;
+	// }
 
-//@Id
-//private UUID sessionId;
+	// @Id
+	// private UUID sessionId;
 
-@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
 }

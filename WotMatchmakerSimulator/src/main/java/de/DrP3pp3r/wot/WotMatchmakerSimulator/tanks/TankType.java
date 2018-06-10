@@ -8,86 +8,93 @@ import javax.persistence.Id;
 @Entity
 public class TankType
 {
-	
-public TankType()
-{
-}
-	
-public TankType(String name, TankClass tankClass, Integer tier, Integer minBattleTier, Integer maxBattleTier) 
-{
-	this.name = name;
-	this.tankClass = tankClass;
-	this.tier = tier;
-	this.minBattleTier = minBattleTier;
-	this.maxBattleTier = maxBattleTier;
-}
+	public TankType()
+	{
+	}
 
-public int getId() {
-	return id;
-}
+	public TankType(String name, TankClass tankClass, Integer tier, Integer minBattleTier, Integer maxBattleTier)
+	{
+		this.name = name;
+		this.tankClass = tankClass;
+		this.tier = tier;
+		this.minBattleTier = minBattleTier;
+		this.maxBattleTier = maxBattleTier;
+	}
 
-public void setId(int id) {
-	this.id = id;
-}
+	public int getId()
+	{
+		return id;
+	}
 
-public String getName()
-{
-	return name;
-}
+	public void setId(int id)
+	{
+		this.id = id;
+	}
 
-public void setName(String name) {
-	this.name = name;
-}
+	public String getName()
+	{
+		return name;
+	}
 
-public TankClass getTankClass()
-{
-	return tankClass;
-}
+	public void setName(String name)
+	{
+		this.name = name;
+	}
 
-public void setTankClass(TankClass tankClass) {
-	this.tankClass = tankClass;
-}
+	public TankClass getTankClass()
+	{
+		return tankClass;
+	}
 
-public Integer getTier()
-{
-	return tier;
-}
+	public void setTankClass(TankClass tankClass)
+	{
+		this.tankClass = tankClass;
+	}
 
-public void setTier(Integer tier) {
-	this.tier = tier;
-}
+	public Integer getTier()
+	{
+		return tier;
+	}
 
-public Integer getMinBattleTier()
-{
-	return minBattleTier;
-}
+	public void setTier(Integer tier)
+	{
+		this.tier = tier;
+	}
 
-public void setMinBattleTier(Integer minBattleTier) {
-	this.minBattleTier = minBattleTier;
-}
+	public Integer getMinBattleTier()
+	{
+		return minBattleTier;
+	}
 
-public Integer getMaxBattleTier()
-{
-	return maxBattleTier;
-}
+	public void setMinBattleTier(Integer minBattleTier)
+	{
+		this.minBattleTier = minBattleTier;
+	}
 
-public void setMaxBattleTier(Integer maxBattleTier) {
-	this.maxBattleTier = maxBattleTier;
-}
+	public Integer getMaxBattleTier()
+	{
+		return maxBattleTier;
+	}
 
-@Override
-public String toString()
-{
-	return String.format("Tank type '%s', class '%s, tier '%d', min. battle tier '%d', max. battle tier '%d'", name, tankClass.toString(), tier, minBattleTier, maxBattleTier);
-}
+	public void setMaxBattleTier(Integer maxBattleTier)
+	{
+		this.maxBattleTier = maxBattleTier;
+	}
 
-@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-private Integer id;
-private String name;
-private TankClass tankClass;
-private Integer tier;
-private Integer minBattleTier;
-private Integer maxBattleTier;
+	@Override
+	public String toString()
+	{
+		return String.format("Tank type '%s', class '%s, tier '%d', min. battle tier '%d', max. battle tier '%d'", name,
+				tankClass.toString(), tier, minBattleTier, maxBattleTier);
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private String name;
+	private TankClass tankClass;
+	private Integer tier;
+	private Integer minBattleTier;
+	private Integer maxBattleTier;
 
 }

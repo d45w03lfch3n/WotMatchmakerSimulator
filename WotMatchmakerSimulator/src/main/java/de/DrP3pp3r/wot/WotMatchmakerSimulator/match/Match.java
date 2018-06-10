@@ -9,70 +9,79 @@ import javax.persistence.OneToOne;
 
 //TODO check if teams are ok for battle tiers
 @Entity
-public class Match {
-	
-public Match()
+public class Match
 {
-}
-	
-public Match(Integer tier)
-{
-	greenTeam = new Team();
-	redTeam = new Team();
-	this.tier = tier;
-}
 
-public Team getGreenTeam()
-{
-	return greenTeam;
-}
+	public Match()
+	{
+	}
 
-public void setGreenTeam(Team greenTeam) {
-	this.greenTeam = greenTeam;
-}
+	public Match(Integer tier)
+	{
+		greenTeam = new Team();
+		redTeam = new Team();
+		this.tier = tier;
+	}
 
-public Team getRedTeam()
-{
-	return redTeam;
-}
+	public Team getGreenTeam()
+	{
+		return greenTeam;
+	}
 
-public void setRedTeam(Team redTeam) {
-	this.redTeam = redTeam;
-}
+	public void setGreenTeam(Team greenTeam)
+	{
+		this.greenTeam = greenTeam;
+	}
 
-public Integer getId() {
-	return id;
-}
+	public Team getRedTeam()
+	{
+		return redTeam;
+	}
 
-public void setId(Integer id) {
-	this.id = id;
-}
+	public void setRedTeam(Team redTeam)
+	{
+		this.redTeam = redTeam;
+	}
 
-public Integer getTier() {
-	return tier;
-}
+	public Integer getId()
+	{
+		return id;
+	}
 
-public void setTier(Integer tier) {
-	this.tier = tier;
-}
+	public void setId(Integer id)
+	{
+		this.id = id;
+	}
 
-public Session getSession() {
-	return session;
-}
+	public Integer getTier()
+	{
+		return tier;
+	}
 
-public void setSession(Session session) {
-	this.session = session;
-}
+	public void setTier(Integer tier)
+	{
+		this.tier = tier;
+	}
 
-@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-private Integer id;
-private Integer tier;
-@OneToOne(cascade = CascadeType.PERSIST)
-private Team greenTeam;
-@OneToOne(cascade = CascadeType.PERSIST)
-private Team redTeam;
-@OneToOne
-private Session session;
+	public Session getSession()
+	{
+		return session;
+	}
+
+	public void setSession(Session session)
+	{
+		this.session = session;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private Integer tier;
+	@OneToOne(cascade = CascadeType.PERSIST)
+	private Team greenTeam;
+	@OneToOne(cascade = CascadeType.PERSIST)
+	private Team redTeam;
+	@OneToOne
+	private Session session;
 
 }

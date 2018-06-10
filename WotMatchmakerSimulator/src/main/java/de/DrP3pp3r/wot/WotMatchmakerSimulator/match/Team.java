@@ -14,67 +14,66 @@ import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
 @Entity
 public class Team
 {
-	
-public Team()
-{
-	tankTypes = new ArrayList<TankType>();
-}
-
-public Integer getId()
-{
-	return id;
-}
-
-public void setId(Integer id)
-{
-	this.id = id;
-}
-
-public List<TankType> getTankTypes()
-{
-	return tankTypes;
-}
-
-public void setTankTypes(List<TankType> tankTypes)
-{
-	this.tankTypes = tankTypes;
-}
-
-public void addNewTankType(TankType newTankType) throws TeamFullException
-{
-	if(tankTypes.size() < MAX_TEAM_SIZE)
+	public Team()
 	{
-		tankTypes.add(newTankType);
+		tankTypes = new ArrayList<TankType>();
 	}
-	else
+
+	public Integer getId()
 	{
-		throw new TeamFullException("Team is already full!");
+		return id;
 	}
-}
 
-//public List<TankType> getTankTypes()
-//{
-//	List<TankType> unmodifiableList = Collections.unmodifiableList(tankTypes);
-//	return unmodifiableList;
-//}
+	public void setId(Integer id)
+	{
+		this.id = id;
+	}
 
-public Integer getSize()
-{
-	return tankTypes.size();
-}
+	public List<TankType> getTankTypes()
+	{
+		return tankTypes;
+	}
 
-public Boolean isFull()
-{
-	return tankTypes.size() == MAX_TEAM_SIZE;
-}
+	public void setTankTypes(List<TankType> tankTypes)
+	{
+		this.tankTypes = tankTypes;
+	}
 
-@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-private Integer id;
+	public void addNewTankType(TankType newTankType) throws TeamFullException
+	{
+		if(tankTypes.size() < MAX_TEAM_SIZE)
+		{
+			tankTypes.add(newTankType);
+		}
+		else
+		{
+			throw new TeamFullException("Team is already full!");
+		}
+	}
 
-@OneToMany
-private List<TankType> tankTypes;
+	// public List<TankType> getTankTypes()
+	// {
+	// List<TankType> unmodifiableList = Collections.unmodifiableList(tankTypes);
+	// return unmodifiableList;
+	// }
 
-private static final int MAX_TEAM_SIZE = 15;
+	public Integer getSize()
+	{
+		return tankTypes.size();
+	}
+
+	public Boolean isFull()
+	{
+		return tankTypes.size() == MAX_TEAM_SIZE;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
+	@OneToMany
+	private List<TankType> tankTypes;
+
+	private static final int MAX_TEAM_SIZE = 15;
 
 }

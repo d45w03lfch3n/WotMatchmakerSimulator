@@ -11,6 +11,6 @@ public class TeamFullException extends Exception
 	{
 		super(message);
 	}
-	
+
 	private static final long serialVersionUID = 2402735870780841379L;
 }

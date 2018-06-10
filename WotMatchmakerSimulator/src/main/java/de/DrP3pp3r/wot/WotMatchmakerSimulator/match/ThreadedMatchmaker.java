@@ -10,13 +10,15 @@ public abstract class ThreadedMatchmaker implements IMatchmaker, Runnable
 	{
 		doRun = new AtomicBoolean(false);
 	}
-	
+
 	@Override
-	public void setApi(API api) {
-		this.api = api;		
+	public void setApi(API api)
+	{
+		this.api = api;
 	}
 
-	protected API getApi() {
+	protected API getApi()
+	{
 		return api;
 	}
 
@@ -24,11 +26,11 @@ public abstract class ThreadedMatchmaker implements IMatchmaker, Runnable
 	public void start()
 	{
 		assert api != null : "No API set!";
-		
+
 		if(doRun.compareAndSet(false, true))
 		{
 			assert workerThread == null : "There already is a worker thread!";
-			
+
 			workerThread = new Thread(this);
 			workerThread.start();
 		}
@@ -40,7 +42,7 @@ public abstract class ThreadedMatchmaker implements IMatchmaker, Runnable
 
 	@Override
 	public void stop()
-	{		
+	{
 		try
 		{
 			if(doRun.get())
@@ -59,23 +61,22 @@ public abstract class ThreadedMatchmaker implements IMatchmaker, Runnable
 			// nothing to do...
 		}
 	}
-	
+
 	@Override
-	public void run() 
+	public void run()
 	{
 		runImpl();
 	}
-	
+
 	public abstract void runImpl();
-	
+
 	protected Boolean shouldRun()
 	{
 		return doRun.get();
 	}
 
-	
 	private API api;
-	
+
 	private Thread workerThread;
 	private AtomicBoolean doRun;
 }

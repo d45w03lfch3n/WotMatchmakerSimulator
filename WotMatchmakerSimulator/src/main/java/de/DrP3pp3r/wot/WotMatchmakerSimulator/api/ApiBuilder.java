@@ -21,14 +21,14 @@ public class ApiBuilder
 		List<TankUse> tankUses = getTankUses(database);
 		TankUsage tankUsage = buildTankUsage(tankUses);
 		TankTypeSelector tankTypeSelector = tankUsage.buildTankTypeSelector();
-		
+
 		testTankTypeSelector(tankTypes, tankTypeSelector);
-		
+
 		API api = new API(database, tankTypeSelector);
-		
+
 		return api;
 	}
-	
+
 	private static List<TankType> getTankTypes(Database database)
 	{
 		List<TankType> tankTypes = database.execute(
@@ -40,16 +40,16 @@ public class ApiBuilder
 					return query.list();
 				});
 
-//		System.out.format("Number of tank types: '%d'.\n", tankTypes.size());
+		// System.out.format("Number of tank types: '%d'.\n", tankTypes.size());
 
-//		for(TankType t : tankTypes)
-//		{
-//			System.out.println(t.toString());
-//		}
-		
+		// for(TankType t : tankTypes)
+		// {
+		// System.out.println(t.toString());
+		// }
+
 		return tankTypes;
 	}
-	
+
 	private static List<TankUse> getTankUses(Database database)
 	{
 		List<TankUse> tankUses = database.execute(
@@ -60,20 +60,20 @@ public class ApiBuilder
 					Query<TankUse> query = s.createQuery(hql);
 					return query.list();
 				});
-		
+
 		return tankUses;
 	}
-	
+
 	private static TankUsage buildTankUsage(List<TankUse> tankUses)
 	{
 		TankUsage tankUsage = new TankUsage();
 		tankUsage.setTankUses(tankUses);
-		
+
 		// System.out.print(tankUsage.toString());
-		
+
 		return tankUsage;
 	}
-	
+
 	private static void testTankTypeSelector(List<TankType> tankTypes, TankTypeSelector tankTypeSelector)
 	{
 		TankType selectedTankType = null;

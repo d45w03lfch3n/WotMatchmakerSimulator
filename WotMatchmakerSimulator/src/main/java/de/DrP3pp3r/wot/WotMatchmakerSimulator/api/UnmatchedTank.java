@@ -10,46 +10,51 @@ import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
 @Entity
 public class UnmatchedTank
 {
-	
-public UnmatchedTank()
-{
-	
-}
-	
-public UnmatchedTank(Session session, TankType tankType)
-{
-	this.session = session;
-	this.tankType = tankType;
-}
+	public UnmatchedTank()
+	{
 
-public Integer getId() {
-	return id;
-}
+	}
 
-public void setId(Integer id) {
-	this.id = id;
-}
+	public UnmatchedTank(Session session, TankType tankType)
+	{
+		this.session = session;
+		this.tankType = tankType;
+	}
 
-public Session getSession() {
-	return session;
-}
+	public Integer getId()
+	{
+		return id;
+	}
 
-public void setSession(Session session) {
-	this.session = session;
-}
+	public void setId(Integer id)
+	{
+		this.id = id;
+	}
 
-public TankType getTankType() {
-	return tankType;
-}
+	public Session getSession()
+	{
+		return session;
+	}
 
-public void setTankType(TankType tankType) {
-	this.tankType = tankType;
-}
+	public void setSession(Session session)
+	{
+		this.session = session;
+	}
 
-@Id
-private Integer id;
-@OneToOne
-private Session session;
-@OneToOne
-private TankType tankType;
+	public TankType getTankType()
+	{
+		return tankType;
+	}
+
+	public void setTankType(TankType tankType)
+	{
+		this.tankType = tankType;
+	}
+
+	@Id
+	private Integer id;
+	@OneToOne
+	private Session session;
+	@OneToOne
+	private TankType tankType;
 }

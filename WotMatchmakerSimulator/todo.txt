@@ -12,7 +12,7 @@ Queue:
 - add support for platoons (create 2 or 3 tank platoons, e.g. certain percentage of tanks is put in platoons)
 
 Writing a matchmaker:
-- Dependency injection of matchmaker implementation (implementation of IMatchmaker)
+/ Dependency injection of matchmaker implementation (implementation of IMatchmaker)
 
 Example matchmaker:
 - Balance tanks per tier in a match (same amount of each tier in each team)

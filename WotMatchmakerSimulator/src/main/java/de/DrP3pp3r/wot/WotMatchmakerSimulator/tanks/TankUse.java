@@ -7,56 +7,60 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class TankUse {
-	
-public TankUse()
+public class TankUse
 {
-	
-}
-	
-public TankUse(TankType tankType, int useCount)
-{
-	this.tankType = tankType;
-	this.useCount = useCount;
-}
+	public TankUse()
+	{
 
-public Integer getId() {
-	return id;
-}
+	}
 
-public void setId(Integer id) {
-	this.id = id;
-}
+	public TankUse(TankType tankType, int useCount)
+	{
+		this.tankType = tankType;
+		this.useCount = useCount;
+	}
 
-public TankType getTankType()
-{
-	return tankType;
-}
+	public Integer getId()
+	{
+		return id;
+	}
 
-public void setTankType(TankType tankType) {
-	this.tankType = tankType;
-}
+	public void setId(Integer id)
+	{
+		this.id = id;
+	}
 
-public int getUseCount()
-{
-	return useCount;
-}
+	public TankType getTankType()
+	{
+		return tankType;
+	}
 
-public void setUseCount(Integer useCount) {
-	this.useCount = useCount;
-}
+	public void setTankType(TankType tankType)
+	{
+		this.tankType = tankType;
+	}
 
-@Override
-public String toString()
-{
-	return String.format("Tank use for tank '%s' is '%d'.", tankType.getName(), useCount);
-}
+	public int getUseCount()
+	{
+		return useCount;
+	}
 
-@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-private Integer id;
-@OneToOne
-private TankType tankType;
-private Integer useCount;
+	public void setUseCount(Integer useCount)
+	{
+		this.useCount = useCount;
+	}
+
+	@Override
+	public String toString()
+	{
+		return String.format("Tank use for tank '%s' is '%d'.", tankType.getName(), useCount);
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	@OneToOne
+	private TankType tankType;
+	private Integer useCount;
 
 }

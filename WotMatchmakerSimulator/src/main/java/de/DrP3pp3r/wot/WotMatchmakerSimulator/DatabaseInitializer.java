@@ -575,7 +575,7 @@ public class DatabaseInitializer
 		createTankTypeAndUses(database, "Object 268", TankClass.TANK_DESTROYER, 10, 10, 12, 11406);
 		createTankTypeAndUses(database, "Object 263B", TankClass.TANK_DESTROYER, 10, 10, 12, 8);
 	}
-	
+
 	private static void createTankTypeAndUses(Database database, String name, TankClass tankClass, Integer tier,
 			Integer minBattleTier, Integer maxBattleTier, Integer appearances)
 	{
@@ -583,10 +583,10 @@ public class DatabaseInitializer
 		TankUse tu = new TankUse(tt, appearances);
 
 		database.execute(
-			s ->
-			{
-				s.persist(tt);
-				s.persist(tu);
-			});
+				s ->
+				{
+					s.persist(tt);
+					s.persist(tu);
+				});
 	}
 }

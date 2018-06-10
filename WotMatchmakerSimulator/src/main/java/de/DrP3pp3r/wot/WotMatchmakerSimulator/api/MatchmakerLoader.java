@@ -39,7 +39,7 @@ public class MatchmakerLoader
 			{
 				System.out.format("%s\n", u.toString());
 			}
-			
+
 			System.out.format("Loading Matchmakers...\n");
 
 			ServiceLoader<ThreadedMatchmaker> matchmakers = ServiceLoader.load(ThreadedMatchmaker.class, loader);
@@ -59,7 +59,7 @@ public class MatchmakerLoader
 
 		return null;
 	}
-	
+
 	public static IMatchmaker loadMatchmaker2(String jarFilePath)
 	{
 		IMatchmaker result = null;
@@ -84,7 +84,7 @@ public class MatchmakerLoader
 			{
 				System.out.format("%s\n", u.toString());
 			}
-	
+
 			jarFile = new JarFile(jarFilePath);
 			Enumeration<JarEntry> e = jarFile.entries();
 			while(e.hasMoreElements())
@@ -94,7 +94,7 @@ public class MatchmakerLoader
 				{
 					continue;
 				}
-				
+
 				// -6 because of .class
 				String className = je.getName().substring(0, je.getName().length() - 6);
 				className = className.replace('/', '.');
@@ -108,7 +108,7 @@ public class MatchmakerLoader
 				{
 					System.out.format("Class '%s' not found.\n", className);
 				}
-				
+
 				Boolean isMatchmaker = false;
 				if(c != null)
 				{
@@ -118,9 +118,10 @@ public class MatchmakerLoader
 						System.out.format("Found IMatchmaker!\n");
 						break;
 					}
-					
+
 					Class<?> superClass = c.getSuperclass();
-					while(superClass != null) {
+					while(superClass != null)
+					{
 						if(Arrays.asList(superClass.getInterfaces()).contains(IMatchmaker.class))
 						{
 							isMatchmaker = true;
@@ -130,17 +131,17 @@ public class MatchmakerLoader
 						superClass = superClass.getSuperclass();
 					}
 				}
-				
+
 				if(isMatchmaker)
 				{
 					try
 					{
-						result = (IMatchmaker)c.newInstance();
+						result = (IMatchmaker) c.newInstance();
 						break;
 					}
 					catch(InstantiationException ex)
 					{
-					
+
 					}
 					catch(IllegalAccessException ex)
 					{
@@ -150,7 +151,7 @@ public class MatchmakerLoader
 				{
 					System.out.format("Class '%s' is no IMatchmaker.\n", className);
 				}
-			
+
 			}
 		}
 		catch(MalformedURLException ex)

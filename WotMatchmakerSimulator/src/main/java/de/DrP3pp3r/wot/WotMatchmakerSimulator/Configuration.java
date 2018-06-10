@@ -6,43 +6,43 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-public class Configuration {
-
-public Configuration(String configFilePath)
+public class Configuration
 {
-	File configFile = new File("config.properties");
-	 
-	try
+	public Configuration(String configFilePath)
 	{
-	    FileReader reader = new FileReader(configFile);
-	    Properties props = new Properties();
-	    props.load(reader);
-	 
-	    matchmakerPath = props.getProperty("matchmakerPath");
-	 
-	    System.out.format("matchmakerPath=%s\n", matchmakerPath);
-	    reader.close();
+		File configFile = new File("config.properties");
+
+		try
+		{
+			FileReader reader = new FileReader(configFile);
+			Properties props = new Properties();
+			props.load(reader);
+
+			matchmakerPath = props.getProperty("matchmakerPath");
+
+			System.out.format("matchmakerPath=%s\n", matchmakerPath);
+			reader.close();
+		}
+		catch(FileNotFoundException ex)
+		{
+			System.out.format("%s", ex.getMessage());
+		}
+		catch(IOException ex)
+		{
+			System.out.format("%s", ex.getMessage());
+		}
 	}
-	catch (FileNotFoundException ex)
+
+	public String getMatchmakerPath()
 	{
-		System.out.format("%s", ex.getMessage());
+		return matchmakerPath;
 	}
-	catch (IOException ex)
+
+	public void setMatchmakerPath(String matchmakerPath)
 	{
-		System.out.format("%s", ex.getMessage());
+		this.matchmakerPath = matchmakerPath;
 	}
-}
 
-public String getMatchmakerPath()
-{
-	return matchmakerPath;
-}
-
-public void setMatchmakerPath(String matchmakerPath)
-{
-	this.matchmakerPath = matchmakerPath;
-}
-
-private String matchmakerPath;
+	private String matchmakerPath;
 
 }

@@ -7,14 +7,14 @@ import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankType;
 import de.DrP3pp3r.wot.WotMatchmakerSimulator.tanks.TankTypeSelector;
 
 public class Queue implements Runnable
-{	
+{
 	public Queue(TankTypeSelector tankTypeSelector)
 	{
 		this.tankTypeSelector = tankTypeSelector;
 		tankTypes = new ConcurrentLinkedQueue<TankType>();
 		doRun = new AtomicBoolean(false);
 	}
-	
+
 	public void start(Integer tanksPerSecond)
 	{
 		if(doRun.compareAndSet(false, true))
@@ -30,7 +30,7 @@ public class Queue implements Runnable
 			System.out.println("Queue already running!");
 		}
 	}
-	
+
 	public Boolean stop()
 	{
 		Boolean stopped = false;
@@ -52,12 +52,13 @@ public class Queue implements Runnable
 		{
 			// nothing to do...
 		}
-		
+
 		return stopped;
 	}
-	
+
 	@Override
-	public void run() {
+	public void run()
+	{
 		try
 		{
 			final long ns_per_s = 1_000_000_000;
@@ -66,25 +67,26 @@ public class Queue implements Runnable
 			while(doRun.get())
 			{
 				long start = System.nanoTime();
-				for(Integer i = 0; i < tanksPerSecond; ++i) {				
+				for(Integer i = 0; i < tanksPerSecond; ++i)
+				{
 					tankTypes.add(tankTypeSelector.getRandomTankType());
 				}
 				long end = System.nanoTime();
 				long diff = end - start;
-				//System.out.format("Diff: %d\n", diff);
+				// System.out.format("Diff: %d\n", diff);
 				if(diff > ns_per_s)
 				{
 					// too slow
-					System.out.format("Queue is too slow. It took '%d' ms for '%d' tanks!\n", diff/ns_per_ms, tanksPerSecond);
+					System.out.format("Queue is too slow. It took '%d' ms for '%d' tanks!\n", diff / ns_per_ms, tanksPerSecond);
 				}
 				else
 				{
-					long ms_to_sleep = ms_per_s - diff/ns_per_ms;
-					//System.out.format("Queue has spare time ('%d' ns).\n", diff);
+					long ms_to_sleep = ms_per_s - diff / ns_per_ms;
+					// System.out.format("Queue has spare time ('%d' ns).\n", diff);
 					Thread.sleep(ms_to_sleep);
 				}
 			}
-			
+
 			System.out.format("Tanks in queue: '%d'\n", tankTypes.size());
 		}
 		catch(InterruptedException ex)
@@ -92,13 +94,13 @@ public class Queue implements Runnable
 			System.out.format("Queue was interrupted!\n");
 			doRun.set(false);
 		}
-	}	
-	
+	}
+
 	public TankType getNextTank()
 	{
 		return tankTypes.poll();
 	}
-	
+
 	// TODO method to get a bunch of tanks?!
 
 	private TankTypeSelector tankTypeSelector;
