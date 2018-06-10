@@ -18,10 +18,10 @@ public class MatchmakerLoader
 {
 	public static IMatchmaker loadMatchmaker(String jarFilePath)
 	{
+		URLClassLoader loader = null;
 		try
 		{
 			File file = new File(jarFilePath);
-
 			if(file.exists())
 			{
 				System.out.format("File exists.\n");
@@ -33,7 +33,7 @@ public class MatchmakerLoader
 
 			URL url = file.toURI().toURL();
 			URL[] urls = new URL[] { url };
-			URLClassLoader loader = new URLClassLoader(urls, Thread.currentThread().getContextClassLoader());
+			loader = new URLClassLoader(urls, Thread.currentThread().getContextClassLoader());
 
 			for(URL u : loader.getURLs())
 			{
@@ -56,6 +56,20 @@ public class MatchmakerLoader
 		{
 			System.out.format("Bad URL: %s\n", ex.getMessage());
 		}
+		finally
+		{
+			if(loader != null)
+			{
+				try
+				{
+					loader.close();
+				}
+				catch(IOException ex)
+				{
+					System.out.format("Error closing: %s\n", ex.getMessage());
+				}
+			}
+		}
 
 		return null;
 	}
@@ -64,6 +78,7 @@ public class MatchmakerLoader
 	{
 		IMatchmaker result = null;
 		JarFile jarFile = null;
+		URLClassLoader loader = null;
 		try
 		{
 			File file = new File(jarFilePath);
@@ -78,7 +93,7 @@ public class MatchmakerLoader
 
 			URL url = file.toURI().toURL();
 			URL[] urls = new URL[] { url };
-			URLClassLoader loader = new URLClassLoader(urls, Thread.currentThread().getContextClassLoader());
+			loader = new URLClassLoader(urls, Thread.currentThread().getContextClassLoader());
 
 			for(URL u : loader.getURLs())
 			{
@@ -136,7 +151,7 @@ public class MatchmakerLoader
 				{
 					try
 					{
-						result = (IMatchmaker) c.newInstance();
+						result = (IMatchmaker)c.newInstance();
 						break;
 					}
 					catch(InstantiationException ex)
@@ -170,10 +185,15 @@ public class MatchmakerLoader
 				{
 					jarFile.close();
 				}
+				
+				if(loader != null)
+				{
+					loader.close();
+				}
 			}
 			catch(IOException ex)
 			{
-				System.out.format("Error closing jar: %s\n", ex.getMessage());
+				System.out.format("Error closing: %s\n", ex.getMessage());
 			}
 		}
 
