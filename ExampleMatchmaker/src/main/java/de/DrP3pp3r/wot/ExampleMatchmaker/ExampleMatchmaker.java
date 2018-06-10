@@ -15,6 +15,12 @@ public class ExampleMatchmaker extends ThreadedMatchmaker
 	}
 	
 	@Override
+	public void setConfigurationPath(String configurationPath)
+	{
+		// ignore configuration path...
+	}
+	
+	@Override
 	public void runImpl()
 	{
 		matchedTanks = 0;
